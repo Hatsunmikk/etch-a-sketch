@@ -11,6 +11,19 @@ for(let i = 0; i < 256; i++){
     //each created square is being assigned a class to target it for styling
     square.classList.add("grid-square");
      
+    //Adding hover effects to create a trail 
+    square.addEventListener("mouseover", () =>
+    {
+        square.style.backgroundColor =  "black";
+    });
+
+    square.addEventListener("mouseleave", () =>
+        {
+            square.style.backgroundColor =  "lightgray";
+        });
+
+
+
     //Each square is being added to the main grid container
     gridContainer.appendChild(square);
 }

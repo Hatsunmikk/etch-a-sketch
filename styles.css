@@ -13,4 +13,9 @@
     background-color: lightgray;
     border: 1px solid #ccc;
     box-sizing: border-box; 
+    transition: background-color 0.2s ease;
+}
+
+.grid-square.hovered {
+    background-color: black;
 }
