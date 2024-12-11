@@ -26,4 +26,10 @@ for(let i = 0; i < 256; i++){
 
     //Each square is being added to the main grid container
     gridContainer.appendChild(square);
-}
+};
+
+const button = document.getElementById("btn");
+
+button.addEventListener("click", () => {
+    prompt("How many squares do you want?");
+});
