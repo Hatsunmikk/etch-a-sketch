@@ -1,4 +1,11 @@
 
+
+
+function createGrid (){
+
+    
+
+}
 //Main grid container which will contain all the square within it
 const gridContainer = document.getElementById("grid-container");
 
@@ -32,6 +39,18 @@ for(let i = 0; i < 256; i++){
 
 const button = document.getElementById("btn");
 
+//How clicking the button guides us to the function that creates the grid
 button.addEventListener("click", () => {
-    prompt("How many squares do you want? (max. 100)");
+   let numOfSquares = prompt("How many squares do you want? (max. 100)");
+   numOfSquares = parseInt(numOfSquares);
+
+   if(isNaN(numOfSquares) || numOfSquares < 1 || numOfSquares >100){
+       alert("Please enter a valid number between 1 an 100.");
+       return;
+   };
+
+   createGrid(numOfSquares);
 });
+
+
+
