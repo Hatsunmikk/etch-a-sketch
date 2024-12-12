@@ -13,8 +13,9 @@
 .grid-square {
     
     background-color: lightgrey;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     box-sizing: border-box; 
+    opacity: 0.5;
    
 }
 

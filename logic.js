@@ -23,17 +23,42 @@ function createGrid (numOfSquares){
 
     square.style.width = `${squareSize}px`;
     square.style.height = `${squareSize}px`;
+
+    square.dataset.interactions = 0;
+    square.dataset.color = "";
+
+    //Function to generate a random rgb color
+    function getRandomColor () {
+        const r = Math.floor(Math.random() * 256);
+        const g =  Math.floor(Math.random() * 256);
+        const b =  Math.floor(Math.random() * 256);
+
+        return `rgb( ${r}, ${g}, ${b})`;
+    };
+
      
-    //Adding hover effects to create a trail 
+    //Adding hover effects to create a trail, randomize colors and darken progressively
     square.addEventListener("mouseover", () =>
     {
-        square.style.backgroundColor =  "black";
-    });
+        //on the  first ever interaction:
+        if(square.dataset.color === ""){
+            square.dataset.color = getRandomColor();
+            square.style.backgroundColor = square.dataset.color;
+        };
 
-    square.addEventListener("mouseleave", () =>
-        {
-            square.style.backgroundColor =  "lightgray";
-        });
+        //Getting the number of interactions
+        let interactions = parseInt(square.dataset.interactions);
+
+        //Increase the opacity; darken by 10%
+        if(interactions < 10){
+            square.style.opacity = (1 - (interactions * 0.1));
+            square.dataset.interactions = interactions + 1;
+
+        };
+
+
+
+    });
 
 
 
