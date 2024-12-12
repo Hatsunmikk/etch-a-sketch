@@ -2,6 +2,8 @@
 //Main grid container which will contain all the square within it
 const gridContainer = document.getElementById("grid-container");
 
+
+
 //A loop to create the squares
 for(let i = 0; i < 256; i++){
 
