@@ -31,5 +31,5 @@ for(let i = 0; i < 256; i++){
 const button = document.getElementById("btn");
 
 button.addEventListener("click", () => {
-    prompt("How many squares do you want?");
+    prompt("How many squares do you want? (max. 100)");
 });
