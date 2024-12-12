@@ -51,7 +51,7 @@ function createGrid (numOfSquares){
 
         //Increase the opacity; darken by 10%
         if(interactions < 10){
-            square.style.opacity = (1 - (interactions * 0.1));
+            square.style.opacity = (0 + (interactions * 0.1));
             square.dataset.interactions = interactions + 1;
 
         };
