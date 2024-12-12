@@ -73,7 +73,7 @@ const button = document.getElementById("btn");
 
 //How clicking the button guides us to the function that creates the grid
 button.addEventListener("click", () => {
-   let numOfSquares = prompt("How many squares do you want? (max. 100)");
+   let numOfSquares = prompt("How many squares do you want? (max. 100 per side)");
    numOfSquares = parseInt(numOfSquares);
 
    if(isNaN(numOfSquares) || numOfSquares < 1 || numOfSquares > 100){
