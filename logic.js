@@ -37,7 +37,7 @@ function createGrid (numOfSquares){
     };
 
      
-    function handleInteraction(event) {
+    function handleInteraction() {
         //on the  first ever interaction:
         if(square.dataset.color === ""){
             square.dataset.color = getRandomColor();
@@ -65,14 +65,14 @@ function createGrid (numOfSquares){
      square.addEventListener("touchstart", (event) => {
          event.preventDefault();  // Prevents unwanted scrolling behavior during touch
          isTouching = true;
-         handleInteraction(event);
+         handleInteraction();
      });
 
      square.addEventListener("touchmove", (event) => {
          event.preventDefault();  // Prevents unwanted scrolling behavior during touch
          if (isTouching) {
-             handleInteraction(event);
-         }
+             handleInteraction();
+         };
      });
 
      square.addEventListener("touchend", () => {
