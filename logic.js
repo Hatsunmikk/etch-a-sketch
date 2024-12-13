@@ -61,59 +61,44 @@ function createGrid (numOfSquares){
     gridContainer.appendChild(square);
 };
 
-// Mobile touch-and-drag logic
-let isTouching = false; // Track whether the user is currently touching
-let lastTouchedSquare = null;
 
-// Event listener for touchstart (on grid container)
-gridContainer.addEventListener("touchstart", (event) => {
-    event.preventDefault();  // Prevents unwanted scrolling behavior during touch
-    isTouching = true;
+    // Helper function to get the square at the touch position
+    function getSquareAtPosition(touchX, touchY) {
+        const rect = gridContainer.getBoundingClientRect();
+        const col = Math.floor((touchX - rect.left) / squareSize);
+        const row = Math.floor((touchY - rect.top) / squareSize);
+        const index = row * numOfSquares + col;
+        return gridContainer.children[index];
+    }
 
-    // Get the touch position relative to the grid container
-    const touch = event.touches[0]; // Get the first touch point
-    const touchX = touch.clientX;
-    const touchY = touch.clientY;
-
-    // Check which square the touch is on and trigger interaction
-    const square = getSquareAtPosition(touchX, touchY);
-    if (square && !square.dataset.color) {
-        handleInteraction.call(square);
-    };
-});
-
-// Event listener for touchmove (on grid container)
-gridContainer.addEventListener("touchmove", (event) => {
-    event.preventDefault();  // Prevents unwanted scrolling behavior during touch
-    if (isTouching) {
-        const touch = event.touches[0]; // Get the first touch point
-        const touchX = touch.clientX;
-        const touchY = touch.clientY;
-
-        // Check which square the touch is on and trigger interaction
-        const square = getSquareAtPosition(touchX, touchY);
-        if (square && !square.dataset.color) {
+    // Touch start event to start interaction
+    gridContainer.addEventListener("touchstart", (event) => {
+        event.preventDefault(); // Prevent scrolling on mobile
+        isTouching = true;
+        const touch = event.touches[0];
+        const square = getSquareAtPosition(touch.clientX, touch.clientY);
+        if (square) {
             handleInteraction.call(square);
-        };
-    };
-});
+        }
+    });
 
-// Event listener for touchend (on grid container)
-gridContainer.addEventListener("touchend", () => {
-    isTouching = false;  // End interaction when touch ends
-});
+    // Touch move event to apply effect while moving
+    gridContainer.addEventListener("touchmove", (event) => {
+        event.preventDefault();
+        if (isTouching) {
+            const touch = event.touches[0];
+            const square = getSquareAtPosition(touch.clientX, touch.clientY);
+            if (square) {
+                handleInteraction.call(square);
+            }
+        }
+    });
 
-// Helper function to get the square at the touch position
-function getSquareAtPosition(touchX, touchY) {
-    const rect = gridContainer.getBoundingClientRect(); // Get the grid container position
-    const col = Math.floor((touchX - rect.left) / squareSize); // Calculate the column
-    const row = Math.floor((touchY - rect.top) / squareSize); // Calculate the row
+    // Touch end event to stop interaction
+    gridContainer.addEventListener("touchend", () => {
+        isTouching = false;
+    });
 
-    // Get the index of the square in the grid container
-    const index = row * numOfSquares + col;
-    const square = gridContainer.children[index];
-    return square;
-};
 
 };
 
