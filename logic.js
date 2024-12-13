@@ -59,6 +59,9 @@ function createGrid (numOfSquares){
 
     //Each square is being added to the main grid container
     gridContainer.appendChild(square);
+
+    // Assign the `handleInteraction` method to each square
+    square.addEventListener("mouseover", handleInteraction);
 };
 
 
@@ -70,6 +73,9 @@ function createGrid (numOfSquares){
         const index = row * numOfSquares + col;
         return gridContainer.children[index];
     }
+
+    // Variable to track if the user is touching
+    let isTouching = false;
 
     // Touch start event to start interaction
     gridContainer.addEventListener("touchstart", (event) => {
