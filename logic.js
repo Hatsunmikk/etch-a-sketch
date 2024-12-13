@@ -57,11 +57,13 @@ function createGrid (numOfSquares){
     };
 
 
+square.addEventListener("mouseover", handleInteraction);
+
+
     //Each square is being added to the main grid container
     gridContainer.appendChild(square);
 
-    // Assign the `handleInteraction` method to each square
-    square.addEventListener("mouseover", handleInteraction);
+    
 };
 
 
