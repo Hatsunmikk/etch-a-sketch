@@ -37,9 +37,7 @@ function createGrid (numOfSquares){
     };
 
      
-    //Adding hover effects to create a trail, randomize colors and darken progressively
-    square.addEventListener("mouseover", () =>
-    {
+    function handleInteraction(event) {
         //on the  first ever interaction:
         if(square.dataset.color === ""){
             square.dataset.color = getRandomColor();
@@ -56,9 +54,34 @@ function createGrid (numOfSquares){
 
         };
 
+    };
+
+    // Event listener for mouseover (desktop) and touchstart or click (mobile)
+    square.addEventListener("mouseover", handleInteraction);
+    square.addEventListener("click", handleInteraction);
+
+     // Mobile touch and drag events
+     let isTouching = false; // Track whether the user is currently touching
+     square.addEventListener("touchstart", (event) => {
+         event.preventDefault();  // Prevents unwanted scrolling behavior during touch
+         isTouching = true;
+         handleInteraction(event);
+     });
+
+     square.addEventListener("touchmove", (event) => {
+         event.preventDefault();  // Prevents unwanted scrolling behavior during touch
+         if (isTouching) {
+             handleInteraction(event);
+         }
+     });
+
+     square.addEventListener("touchend", () => {
+         isTouching = false;  // Ends the interaction when touch ends
+     });
 
 
-    });
+
+  
 
 
 

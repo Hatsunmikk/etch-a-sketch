@@ -8,6 +8,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 .container {
     display: flex;
@@ -42,6 +44,7 @@ button {
     transition: color 0.7s ease-in;
     transition: border 0s ease;
     font-size: 18px;
+    cursor: pointer;
 }
 
 button:hover {
@@ -49,4 +52,19 @@ background-color: blueviolet;
 color: white;
 border: none;
 
+}
+
+/*for mobile*/
+@media (max-width: 600px) {
+    .container {
+        width: 90vw; /* Slightly reduce the grid container size for smaller screens */
+        height: 90vw; /* Keep it square */
+    }
+
+    button {
+        width: 120px;
+        height: 60px;
+        font-size: 16px;
+        margin-top: 15px;
+    }
 }
